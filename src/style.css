@@ -1,0 +1,21 @@
+body{
+    background:#1890ff ;
+    height: 100%;
+}
+#root{
+    height: 100%;
+}
+.header{
+    background: white;
+    border-bottom: 1px solid #999;
+}
+.content{
+    min-height: 430px;
+    margin: 10px;
+}
+.footer{
+    text-align: center;
+    border-top: 1px solid #999;
+    height: 10px;
+    line-height: 3px;
+}
