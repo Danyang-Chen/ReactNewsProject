@@ -1,72 +1,12 @@
-# Test
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+####布局
+- 页面布局运用了从 **antd** 引用的组件，包括整体布局的 `layout`，`header`展示的各个模块运用 `menu` ，登陆页面的 `modal`，登陆成功或失败提示的 `message` ，跳转的页面使用 `list`，详情页面使用 `card` 布局。
+####生命周期函数
+- list 组件中，因为进入一个 list 中后，用户可以点击直接进入另一个 list ，但是因为 **`componentDidMount`** 已经请求了一次数据，则不会再次请求数据，于是运用了当父组件传递的props发生变化时执行的 **`componentWillReceiveProps`** 生命周期函数用来再次请求数据。
+####路由
+- 实现页面跳转就需要用到路由，这个项目在这一块运用到了`Route`，`BrowserRouter`，`Link`，`Switch`，`withRouter`这几个组件，
+  - Switch匹配到第一个路由就不会继续匹配了，解决了同一页面展示两个组件的问题
+  - withRouter 使未包裹在`<Router>` 组件中的 `<Login/> `也可使用路由的功能，访问其数据
+  *（withRouter 作用：非路由组件可以通过withRouter高阶组件访问 History 对象的属性和进行匹配。withRouter将在渲染时向包装组件传递更新的 match、location 和 history 属性。）*
+####其他实现
+- 利用 ES6 中模板字符串，获取动态的 id，实现页面跳转
+- 登录状态下可访问VIP页面，为解决接口获取中先展示VIP页面，若确定不在登录状态才会返回根目录的问题，定义新的变量用以确定是否完成接口获取，且引用多重 if 嵌套语句，使未确定登陆状态时，显示指定页面
